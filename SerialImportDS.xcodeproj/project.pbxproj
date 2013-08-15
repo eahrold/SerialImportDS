@@ -13,6 +13,8 @@
 		BE7A06FF17BB2ABC00A5F6BB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BE7A06FD17BB2ABC00A5F6BB /* Credits.rtf */; };
 		BE7A070217BB2ABC00A5F6BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A070117BB2ABC00A5F6BB /* AppDelegate.m */; };
 		BE7A070517BB2ABC00A5F6BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7A070317BB2ABC00A5F6BB /* MainMenu.xib */; };
+		BEE47B9217BC26360048A188 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE47B9117BC26360048A188 /* Server.m */; };
+		BEE47B9517BC28320048A188 /* Computer.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE47B9417BC28320048A188 /* Computer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		BE7A070017BB2ABC00A5F6BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BE7A070117BB2ABC00A5F6BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BE7A070417BB2ABC00A5F6BB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BEE47B9017BC26360048A188 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
+		BEE47B9117BC26360048A188 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
+		BEE47B9317BC28320048A188 /* Computer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Computer.h; sourceTree = "<group>"; };
+		BEE47B9417BC28320048A188 /* Computer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Computer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,10 @@
 			children = (
 				BE7A070017BB2ABC00A5F6BB /* AppDelegate.h */,
 				BE7A070117BB2ABC00A5F6BB /* AppDelegate.m */,
+				BEE47B9017BC26360048A188 /* Server.h */,
+				BEE47B9117BC26360048A188 /* Server.m */,
+				BEE47B9317BC28320048A188 /* Computer.h */,
+				BEE47B9417BC28320048A188 /* Computer.m */,
 				BE7A070317BB2ABC00A5F6BB /* MainMenu.xib */,
 				BE7A06F517BB2ABC00A5F6BB /* Supporting Files */,
 			);
@@ -168,6 +178,8 @@
 			files = (
 				BE7A06FB17BB2ABC00A5F6BB /* main.m in Sources */,
 				BE7A070217BB2ABC00A5F6BB /* AppDelegate.m in Sources */,
+				BEE47B9217BC26360048A188 /* Server.m in Sources */,
+				BEE47B9517BC28320048A188 /* Computer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +315,7 @@
 				BE7A070A17BB2ABC00A5F6BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
