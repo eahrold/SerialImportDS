@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "Server.h"
 #import "Computer.h"
+#import "Base64.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
     IBOutlet NSArrayController *arrayController;

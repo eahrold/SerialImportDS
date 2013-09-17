@@ -26,7 +26,8 @@
 
 
 
--(void)setBasicHeaders:(NSString*)header;
+-(void)setBasicHeaderWithUser:(NSString*)name andPassword:(NSString*)pass;
+-(void)setBasicHeaderWithHeader:(NSString*)header;
 
 -(void)setServerAddEntryPath:(NSString*)str;
 -(void)setServerRemoveEntryPath:(NSString*)str;

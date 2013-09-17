@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE3C7E9B17D983E2001850C7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3C7E9A17D983E2001850C7 /* Base64.m */; };
 		BE7A06EF17BB2ABC00A5F6BB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A06EE17BB2ABC00A5F6BB /* Cocoa.framework */; };
 		BE7A06F917BB2ABC00A5F6BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7A06F717BB2ABC00A5F6BB /* InfoPlist.strings */; };
 		BE7A06FB17BB2ABC00A5F6BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A06FA17BB2ABC00A5F6BB /* main.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE3C7E9917D983E2001850C7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		BE3C7E9A17D983E2001850C7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		BE7A06EB17BB2ABC00A5F6BB /* SerialImportDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SerialImportDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7A06EE17BB2ABC00A5F6BB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BE7A06F117BB2ABC00A5F6BB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -103,6 +106,8 @@
 		BE7A06F517BB2ABC00A5F6BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE3C7E9917D983E2001850C7 /* Base64.h */,
+				BE3C7E9A17D983E2001850C7 /* Base64.m */,
 				BE7A06F617BB2ABC00A5F6BB /* SerialImportDS-Info.plist */,
 				BE7A06F717BB2ABC00A5F6BB /* InfoPlist.strings */,
 				BE7A06FA17BB2ABC00A5F6BB /* main.m */,
@@ -180,6 +185,7 @@
 				BE7A070217BB2ABC00A5F6BB /* AppDelegate.m in Sources */,
 				BEE47B9217BC26360048A188 /* Server.m in Sources */,
 				BEE47B9517BC28320048A188 /* Computer.m in Sources */,
+				BE3C7E9B17D983E2001850C7 /* Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

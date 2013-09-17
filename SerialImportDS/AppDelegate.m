@@ -17,7 +17,7 @@
     _computerCount.stringValue = @"01";
     
     [self getDefaults];
-
+    
     if(!self.authHeader || !self.serverURL){
         [self showDefaultsPanel];
     }
@@ -41,7 +41,8 @@
 //  Computer Add Methods
 //--------------------------------------------
 - (IBAction)addButtonPressed:(id)sender{
-    
+    NSLog(@"%@",_authHeader);
+
     Computer* computer = [Computer new];
     [computer setComputerName:_computerName.stringValue withCount:_computerCount.stringValue];
     [computer setSerialNumber:_serialNumber.stringValue];
@@ -49,7 +50,7 @@
     
     Server* server = [Server new];
     [ server setURL:self.serverURL];
-    [ server setBasicHeaders:self.authHeader];
+    [ server setBasicHeaderWithHeader:self.authHeader];
     [ server setServerAddEntryPath:computer.serial];
     
 
@@ -133,7 +134,7 @@
     /* set up the Server object */
     Server* server = [Server new];
     [ server setURL: self.serverURL];
-    [ server setBasicHeaders:self.authHeader];
+    [ server setBasicHeaderWithHeader:self.authHeader];
     [ server setServerRemoveEntryPath:computer.serial];
     
     /* send the request */
@@ -153,7 +154,7 @@
     NSLog(@"Importing Computers from DS database");
     Server* server = [[Server alloc]init];
     [ server setURL:self.serverURL];
-    [ server setBasicHeaders:self.authHeader];
+    [ server setBasicHeaderWithHeader:_authHeader];
     [ server setServerGetListPath];
     
     NSDictionary* dict = [[server getRequest]objectForKey:@"computers"];
@@ -216,9 +217,10 @@
 //-------------------------------------------
 //  User Defaults
 //-------------------------------------------
--(void)setHeaderAuthFromNameAndPath{
-    
+-(void)setHeaderFromNameAndPass{
+    _authHeader = [[NSString stringWithFormat:@"%@:%@",_userName.stringValue,_passWord.stringValue]base64EncodedString];
 }
+
 -(void)getDefaults{
     NSUserDefaults *getDefaults = [NSUserDefaults standardUserDefaults];
     self.authHeader             = [getDefaults objectForKey:@"AuthHeader"];
@@ -278,6 +280,7 @@
 - (IBAction)okButtonPressed:(id)sender {
     [self.defaultsPanel orderOut:self];
     [NSApp endSheet:self.defaultsPanel returnCode:0];
+    [self setHeaderFromNameAndPass];
 }
 
 

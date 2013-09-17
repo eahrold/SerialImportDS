@@ -7,9 +7,15 @@
 //
 
 #import "Server.h"
-
+#import "Base64.h"
 @implementation Server
--(void)setBasicHeaders:(NSString*)header{
+-(void)setBasicHeaderWithUser:(NSString *)name andPassword:(NSString *)pass{
+    NSString* header = [[NSString stringWithFormat:@"%@:%@",name,pass]base64EncodedString];
+    
+    self.authHeader = [ NSString stringWithFormat:@"Basic %@",header];
+}
+
+-(void)setBasicHeaderWithHeader:(NSString*)header{
     self.authHeader = [ NSString stringWithFormat:@"Basic %@",header];
 }
 
@@ -68,10 +74,10 @@
     // set header fields
     [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
-    //[request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
+    [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
     
     // Convert data and set request's HTTPBody property
-    [request setHTTPBody:self.requestData];
+    //[request setHTTPBody:self.requestData];
     
     // Create url connection and fire request
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
