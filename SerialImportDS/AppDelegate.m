@@ -17,11 +17,6 @@
     _computerCount.stringValue = @"01";
     
     [self getDefaults];
-    
-    if(!self.authHeader || !self.serverURL){
-        [self showDefaultsPanel];
-    }
-
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
@@ -41,7 +36,6 @@
 //  Computer Add Methods
 //--------------------------------------------
 - (IBAction)addButtonPressed:(id)sender{
-    NSLog(@"%@",_authHeader);
 
     Computer* computer = [Computer new];
     [computer setComputerName:_computerName.stringValue withCount:_computerCount.stringValue];
@@ -49,8 +43,8 @@
     
     
     Server* server = [Server new];
-    [ server setURL:self.serverURL];
-    [ server setBasicHeaderWithHeader:self.authHeader];
+    [ server setFullURL:_serverName.stringValue withPort:_serverPort.stringValue ssl:_securedSSL.state];
+    [ server setBasicHeaderWithHeader:authHeader];
     [ server setServerAddEntryPath:computer.serial];
     
 
@@ -133,8 +127,8 @@
     
     /* set up the Server object */
     Server* server = [Server new];
-    [ server setURL: self.serverURL];
-    [ server setBasicHeaderWithHeader:self.authHeader];
+    [ server setFullURL:_serverName.stringValue withPort:_serverPort.stringValue ssl:_securedSSL.state];
+    [ server setBasicHeaderWithHeader:authHeader];
     [ server setServerRemoveEntryPath:computer.serial];
     
     /* send the request */
@@ -151,10 +145,12 @@
 //  Profile Manager Export Methods
 //----------------------------------------------------------
 -(IBAction)importButtonPressed:(id)sender{
+    [self setHeaderFromNameAndPass];
+    
     NSLog(@"Importing Computers from DS database");
     Server* server = [[Server alloc]init];
-    [ server setURL:self.serverURL];
-    [ server setBasicHeaderWithHeader:_authHeader];
+    [ server setFullURL:_serverName.stringValue withPort:_serverPort.stringValue ssl:_securedSSL.state];
+    [ server setBasicHeaderWithHeader:authHeader];
     [ server setServerGetListPath];
     
     NSDictionary* dict = [[server getRequest]objectForKey:@"computers"];
@@ -218,28 +214,41 @@
 //  User Defaults
 //-------------------------------------------
 -(void)setHeaderFromNameAndPass{
-    _authHeader = [[NSString stringWithFormat:@"%@:%@",_userName.stringValue,_passWord.stringValue]base64EncodedString];
+    authHeader = [[NSString stringWithFormat:@"%@:%@",_userName.stringValue,_passWord.stringValue]base64EncodedString];
 }
 
 -(void)getDefaults{
     NSUserDefaults *getDefaults = [NSUserDefaults standardUserDefaults];
-    self.authHeader             = [getDefaults objectForKey:@"AuthHeader"];
-    self.serverURL              = [getDefaults objectForKey:@"ServerURL"];
     _userName.stringValue       = [getDefaults objectForKey:@"UserName"];
     _serverPort.stringValue     = [getDefaults objectForKey:@"ServerPort"];
     _serverName.stringValue     = [getDefaults objectForKey:@"ServerName"];
     _securedSSL.state           = [getDefaults boolForKey:@"SSLSecured"];
+    
+    NSString* pw = [SSKeychain passwordForService:@"com.aapps.SerialImportDS" account:_userName.stringValue];
+    
+    if(pw){
+        _passWord.stringValue = pw;
+    }
+    
+    NSArray* required = [NSArray arrayWithObjects:_userName,_serverName,_passWord,nil];
+    for(NSTextField* i in required){
+        if([i.stringValue isEqualToString:@""]){
+            [self callDefaultSheet:nil];
+        }
+    }
+
 }
 
 -(void)setDefaults{
     NSUserDefaults* setDefaults = [NSUserDefaults standardUserDefaults];
-    [setDefaults setObject:self.authHeader forKey:@"AuthHeader"];
-    [setDefaults setObject:self.serverURL forKey:@"ServerURL"];
-    [setDefaults setObject:self.serverPort.stringValue forKey:@"ServerPort"];
-    [setDefaults setObject:self.userName.stringValue forKey:@"UserName"];
-    [setDefaults setObject:self.serverName.stringValue forKey:@"ServerName"];
-    [setDefaults setBool:self.securedSSL.state forKey:@"SSLSecured"];
+    [setDefaults setObject:_serverPort.stringValue forKey:@"ServerPort"];
+    [setDefaults setObject:_userName.stringValue forKey:@"UserName"];
+    [setDefaults setObject:_serverName.stringValue forKey:@"ServerName"];
+    [setDefaults setBool:_securedSSL.state forKey:@"SSLSecured"];
 
+    if(![_passWord.stringValue isEqualToString:@""]){
+        [SSKeychain setPassword:_passWord.stringValue forService:@"com.aapps.SerialImportDS" account:_userName.stringValue];
+    }
     
     [setDefaults synchronize];
 }
@@ -262,17 +271,16 @@
                                                                                 contextInfo:nil];
 }
 
-- (void)showDefaultsPanel{
+
+
+-(IBAction)callDefaultSheet:(id)sender{
     /* Display a progress panel as a sheet */
     [NSApp beginSheet:_defaultsPanel
        modalForWindow:_window
         modalDelegate:self
        didEndSelector:nil
           contextInfo:NULL];
-}
 
--(IBAction)callDefaultSheet:(id)sender{
-    [self showDefaultsPanel];
 }
 
 

@@ -10,11 +10,13 @@
 #import <Foundation/Foundation.h>
 #import "Server.h"
 #import "Computer.h"
+#import "SSKeychain.h"
 #import "Base64.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
     IBOutlet NSArrayController *arrayController;
     NSMutableArray *computerArray;
+    NSString* authHeader;
 
 }
 
@@ -27,9 +29,6 @@
 
 @property (assign) IBOutlet NSTextField *importMatch;
 
-
-@property (copy) NSString* authHeader;
-@property (copy) NSString* serverURL;
 
 -(IBAction)addButtonPressed:(id)sender;
 -(IBAction)removeButtonPressed:(id)sender;

@@ -9,6 +9,17 @@
 #import "Server.h"
 #import "Base64.h"
 @implementation Server
+
+-(void)setFullURL:(NSString*)url withPort:(NSString*)port ssl:(BOOL)secure{
+    NSString* protocol = nil;
+    if(secure){
+        protocol = @"https";
+    }else{
+        protocol = @"http";
+    }
+    
+    self.URL = [NSString stringWithFormat:@"%@://%@:%@",protocol,url,port];
+}
 -(void)setBasicHeaderWithUser:(NSString *)name andPassword:(NSString *)pass{
     NSString* header = [[NSString stringWithFormat:@"%@:%@",name,pass]base64EncodedString];
     
@@ -75,6 +86,7 @@
     [request setValue:@"application/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
     [request setValue:self.authHeader forHTTPHeaderField:@"Authorization"];
+    NSLog(@"header: %@",self.authHeader);
     
     // Convert data and set request's HTTPBody property
     //[request setHTTPBody:self.requestData];

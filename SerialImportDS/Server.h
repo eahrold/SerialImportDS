@@ -25,6 +25,7 @@
 @property (copy) NSURLResponse* response;
 
 
+-(void)setFullURL:(NSString*)url withPort:(NSString*)port ssl:(BOOL)secure;
 
 -(void)setBasicHeaderWithUser:(NSString*)name andPassword:(NSString*)pass;
 -(void)setBasicHeaderWithHeader:(NSString*)header;
@@ -34,6 +35,7 @@
 
 -(void)setServerGetListPath;
 -(void)setServerGetEntryPath:(NSString*)str;
+
 
 -(void)postRequestWithData;
 -(NSDictionary*)getRequest;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE11B2D717E7F297002F9413 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = BE11B2D617E7F297002F9413 /* SSKeychain.m */; };
+		BE11B2D917E7F322002F9413 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE11B2D817E7F322002F9413 /* Security.framework */; };
 		BE3C7E9B17D983E2001850C7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3C7E9A17D983E2001850C7 /* Base64.m */; };
 		BE7A06EF17BB2ABC00A5F6BB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A06EE17BB2ABC00A5F6BB /* Cocoa.framework */; };
 		BE7A06F917BB2ABC00A5F6BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE7A06F717BB2ABC00A5F6BB /* InfoPlist.strings */; };
@@ -19,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE11B2D517E7F297002F9413 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		BE11B2D617E7F297002F9413 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		BE11B2D817E7F322002F9413 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BE3C7E9917D983E2001850C7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		BE3C7E9A17D983E2001850C7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		BE7A06EB17BB2ABC00A5F6BB /* SerialImportDS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SerialImportDS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE11B2D917E7F322002F9413 /* Security.framework in Frameworks */,
 				BE7A06EF17BB2ABC00A5F6BB /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				BE7A06EE17BB2ABC00A5F6BB /* Cocoa.framework */,
+				BE11B2D817E7F322002F9413 /* Security.framework */,
 				BE7A06F017BB2ABC00A5F6BB /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -106,6 +113,8 @@
 		BE7A06F517BB2ABC00A5F6BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE11B2D517E7F297002F9413 /* SSKeychain.h */,
+				BE11B2D617E7F297002F9413 /* SSKeychain.m */,
 				BE3C7E9917D983E2001850C7 /* Base64.h */,
 				BE3C7E9A17D983E2001850C7 /* Base64.m */,
 				BE7A06F617BB2ABC00A5F6BB /* SerialImportDS-Info.plist */,
@@ -186,6 +195,7 @@
 				BEE47B9217BC26360048A188 /* Server.m in Sources */,
 				BEE47B9517BC28320048A188 /* Computer.m in Sources */,
 				BE3C7E9B17D983E2001850C7 /* Base64.m in Sources */,
+				BE11B2D717E7F297002F9413 /* SSKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
